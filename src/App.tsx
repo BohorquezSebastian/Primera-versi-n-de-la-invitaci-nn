@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
-const WEDDING_DATE = new Date("2027-05-22T15:30:00-05:00").getTime();
+const WEDDING_DATE = new Date("2026-09-11T17:00:00-05:00").getTime();
 const WHATSAPP_NUMBER = "573045933820";
 
 type Countdown = { days: number; hours: number; minutes: number; seconds: number };
@@ -77,12 +77,12 @@ export default function Home() {
       "VERSION:2.0",
       "PRODID:-//Camila y Mateo//Boda//ES",
       "BEGIN:VEVENT",
-      "UID:camila-mateo-20270522@boda",
-      "DTSTAMP:20260813T120000Z",
-      "DTSTART:20270522T203000Z",
-      "DTEND:20270523T030000Z",
+      "UID:camila-mateo-20260911@boda",
+      "DTSTAMP:20260814T120000Z",
+      "DTSTART:20260911T220000Z",
+      "DTEND:20260912T040000Z",
       "SUMMARY:Boda de Camila y Mateo",
-      "LOCATION:Hacienda San Rafael, Sopó, Cundinamarca",
+      "LOCATION:Salón de Eventos - Conjunto Residencial Paseo de Santa Catalina",
       "DESCRIPTION:Nos encantará compartir este día contigo.",
       "END:VEVENT",
       "END:VCALENDAR",
@@ -149,7 +149,7 @@ export default function Home() {
             <span className="envelope-back" />
             <span className="letter-preview">
               <span className="letter-mark">C <i>&amp;</i> M</span>
-              <span className="letter-date">22 · 05 · 2027</span>
+              <span className="letter-date">11 · 09 · 2026</span>
             </span>
             <span className="envelope-front" />
             <span className="envelope-flap" />
@@ -173,7 +173,7 @@ export default function Home() {
           <h2><span>Camila</span><i>&amp;</i><span>Mateo</span></h2>
           <div className="ornament" aria-hidden="true"><span /><b>✦</b><span /></div>
           <p className="hero-intro">Hay momentos en la vida que son especiales por sí solos. Compartirlos con quienes amamos los convierte en inolvidables.</p>
-          <div className="date-lockup" aria-label="22 de mayo de 2027"><span>Sábado</span><strong>22</strong><span>Mayo · 2027</span></div>
+          <div className="date-lockup" aria-label="11 de septiembre de 2026"><span>Viernes</span><strong>11</strong><span>Septiembre · 2026</span></div>
           <button className="scroll-cue" type="button" onClick={() => document.getElementById("countdown")?.scrollIntoView({ behavior: "smooth" })}>Descubre la celebración <span aria-hidden="true">↓</span></button>
         </div>
       </section>
@@ -195,46 +195,27 @@ export default function Home() {
           <h3>Te esperamos para celebrar</h3>
           <p>Será un día lleno de amor, alegría y momentos que queremos vivir contigo.</p>
         </div>
-        <div className="event-grid">
-          <article className="event-card">
-            <span className="card-number">01</span>
-            <div className="line-icon" aria-hidden="true">♢</div>
-            <p className="card-type">Ceremonia</p>
-            <h4>Capilla San José</h4>
-            <p>Sábado, 22 de mayo</p><p>3:30 p. m.</p><p>Sopó, Cundinamarca</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Capilla+San+Jose+Sopo+Cundinamarca" target="_blank" rel="noreferrer">Ver ubicación <span>↗</span></a>
-          </article>
+        <div className="event-grid single-event-grid">
           <article className="event-card featured-card">
-            <span className="card-number">02</span>
-            <div className="line-icon" aria-hidden="true">✦</div>
-            <p className="card-type">Recepción</p>
-            <h4>Hacienda San Rafael</h4>
-            <p>Sábado, 22 de mayo</p><p>5:30 p. m.</p><p>Sopó, Cundinamarca</p>
-            <a href="https://www.google.com/maps/search/?api=1&query=Hacienda+San+Rafael+Sopo+Cundinamarca" target="_blank" rel="noreferrer">Cómo llegar <span>↗</span></a>
+            <span className="card-number">01</span>
+            <div className="line-icon" aria-hidden="true">⌖</div>
+            <p className="card-type">Ceremonia y recepción</p>
+            <h4>Paseo de Santa Catalina</h4>
+            <p>Viernes, 11 de septiembre de 2026</p>
+            <p>5:00 p. m.</p>
+            <p>Salón de Eventos del Conjunto Residencial</p>
+            <a href="https://www.google.com/maps?q=4.732814,-74.064056" target="_blank" rel="noreferrer">Ver ubicación <span>↗</span></a>
           </article>
-        </div>
-      </section>
-
-      <section className="timeline-section light-section">
-        <div className="section-heading dark-copy">
-          <p className="section-kicker">Nuestro itinerario</p>
-          <h3>Un día para recordar</h3>
-        </div>
-        <div className="timeline">
-          <div className="timeline-item"><span>3:30</span><i>✦</i><div><strong>Ceremonia</strong><p>El momento de decir “sí”.</p></div></div>
-          <div className="timeline-item"><span>5:00</span><i>✦</i><div><strong>Cóctel</strong><p>Brindemos por el amor.</p></div></div>
-          <div className="timeline-item"><span>6:30</span><i>✦</i><div><strong>Cena</strong><p>Sabores para compartir.</p></div></div>
-          <div className="timeline-item"><span>8:30</span><i>✦</i><div><strong>Celebración</strong><p>Que comience la fiesta.</p></div></div>
         </div>
       </section>
 
       <section className="dress-section">
         <div className="dress-copy">
           <p className="section-kicker">Código de vestuario</p>
-          <h3>Elegante</h3>
-          <p>Queremos verte increíble. Traje formal para ellos y vestido largo o midi para ellas.</p>
+          <h3>Cóctel de día</h3>
+          <p>Elegancia relajada en tonos cálidos.</p>
           <div className="palette" aria-label="Paleta sugerida"><span /><span /><span /><span /><span /></div>
-          <small>El blanco está reservado para la novia.</small>
+          <small>El blanco y los tonos marfil quedan reservados exclusivamente para la novia.</small>
         </div>
       </section>
 
@@ -250,7 +231,7 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-kicker">R. S. V. P.</p>
             <h3>¿Nos acompañas?</h3>
-            <p>Confirma tu asistencia antes del 22 de abril de 2027.</p>
+            <p>Confirma tu asistencia antes del 28 de agosto de 2026.</p>
           </div>
           {confirmed ? (
             <div className="confirmation-message" role="status">
@@ -274,7 +255,7 @@ export default function Home() {
       <footer>
         <p>Con amor</p>
         <h3>Camila <i>&amp;</i> Mateo</h3>
-        <span>22 · 05 · 2027</span>
+        <span>11 · 09 · 2026</span>
         <button type="button" onClick={shareInvitation}>Compartir invitación ↗</button>
       </footer>
     </main>
