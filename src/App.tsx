@@ -30,8 +30,7 @@ export default function Home() {
   const [countdown, setCountdown] = useState<Countdown>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [musicOn, setMusicOn] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const audioContextRef = useRef<AudioContext | null>(null);
-  const musicTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setCountdown(getCountdown());
@@ -39,43 +38,37 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => () => {
-    if (musicTimerRef.current) clearInterval(musicTimerRef.current);
-    void audioContextRef.current?.close();
-  }, []);
+  useEffect(() => () => audioRef.current?.pause(), []);
 
-  function playChime(context: AudioContext) {
-    const notes = [261.63, 329.63, 392, 523.25];
-    const now = context.currentTime;
-    notes.forEach((frequency, index) => {
-      const oscillator = context.createOscillator();
-      const gain = context.createGain();
-      oscillator.type = index % 2 ? "triangle" : "sine";
-      oscillator.frequency.value = frequency;
-      gain.gain.setValueAtTime(0, now + index * .52);
-      gain.gain.linearRampToValueAtTime(.032, now + index * .52 + .08);
-      gain.gain.exponentialRampToValueAtTime(.001, now + index * .52 + 1.8);
-      oscillator.connect(gain).connect(context.destination);
-      oscillator.start(now + index * .52);
-      oscillator.stop(now + index * .52 + 1.9);
-    });
+  async function startMusic() {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.32;
+    try {
+      await audio.play();
+      setMusicOn(true);
+    } catch {
+      // Some browsers can still restrict playback. The visible control remains
+      // available so the guest can start it with a single touch.
+      setMusicOn(false);
+    }
+  }
+
+  function openInvitation() {
+    setOpened(true);
+    void startMusic();
   }
 
   async function toggleMusic() {
-    if (musicOn) {
-      if (musicTimerRef.current) clearInterval(musicTimerRef.current);
-      musicTimerRef.current = null;
-      await audioContextRef.current?.close();
-      audioContextRef.current = null;
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (!audio.paused) {
+      audio.pause();
       setMusicOn(false);
       return;
     }
-
-    const context = new AudioContext();
-    audioContextRef.current = context;
-    playChime(context);
-    musicTimerRef.current = setInterval(() => playChime(context), 7_500);
-    setMusicOn(true);
+    await startMusic();
   }
 
   function downloadCalendar() {
@@ -138,6 +131,12 @@ export default function Home() {
 
   return (
     <main className={`site-shell ${opened ? "invitation-open" : ""}`}>
+      <audio
+        ref={audioRef}
+        src="./audio/boda-suave.mp3"
+        preload="auto"
+        loop
+      />
       <section className="opening-scene" aria-hidden={opened}>
         <div className="opening-copy">
           <span className="eyebrow">Tenemos algo que contarte</span>
@@ -145,7 +144,7 @@ export default function Home() {
           <p>Toca el sello para descubrir nuestra invitación.</p>
         </div>
 
-        <button className="envelope-button" type="button" onClick={() => setOpened(true)} aria-label="Abrir invitación de boda">
+        <button className="envelope-button" type="button" onClick={openInvitation} aria-label="Abrir invitación de boda">
           <span className="envelope">
             <span className="envelope-back" />
             <span className="letter-preview">
@@ -160,9 +159,9 @@ export default function Home() {
         </button>
       </section>
 
-      <button className="music-toggle" type="button" onClick={toggleMusic} aria-pressed={musicOn} aria-label={musicOn ? "Detener música" : "Reproducir música"}>
+      <button className="music-toggle" type="button" onClick={toggleMusic} aria-pressed={musicOn} aria-label={musicOn ? "Silenciar música" : "Reproducir música"}>
         <span className={musicOn ? "sound-wave active" : "sound-wave"} aria-hidden="true"><i /><i /><i /></span>
-        {musicOn ? "Música on" : "Música"}
+        {musicOn ? "Silenciar" : "Música"}
       </button>
 
       <section className="hero" aria-hidden={!opened}>
