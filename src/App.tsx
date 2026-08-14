@@ -156,23 +156,31 @@ export default function Home() {
       />
       <section className="opening-scene" aria-hidden={opened}>
         <div className="opening-copy">
-          <span className="eyebrow">Tenemos algo que contarte</span>
-          <h1>Una historia para siempre</h1>
-          <p>Toca el sello para descubrir nuestra invitación.</p>
+          <span className="eyebrow">La invitación de boda de</span>
+          <h1>Sonia <i>&amp;</i> Fernando</h1>
+          <p>Una historia para siempre está a punto de comenzar.</p>
         </div>
 
         <button className="envelope-button" type="button" onClick={openInvitation} aria-label="Abrir invitación de boda">
-          <span className="envelope">
-            <span className="envelope-back" />
-            <span className="letter-preview">
-              <span className="letter-mark">S <i>&amp;</i> F</span>
-              <span className="letter-date">11 · 09 · 2026</span>
+          <span className="envelope-stage">
+            <span className="stage-orbit stage-orbit-one" aria-hidden="true" />
+            <span className="stage-orbit stage-orbit-two" aria-hidden="true" />
+            <span className="envelope">
+              <span className="envelope-depth" />
+              <span className="envelope-back" />
+              <span className="letter-preview">
+                <span className="letter-crown" aria-hidden="true">✦</span>
+                <span className="letter-mark">S <i>&amp;</i> F</span>
+                <span className="letter-title">Nuestra boda</span>
+                <span className="letter-date">11 · SEPTIEMBRE · 2026</span>
+              </span>
+              <span className="envelope-front"><span className="front-foil" aria-hidden="true">S <i>✦</i> F</span></span>
+              <span className="envelope-flap"><span className="flap-ornament" aria-hidden="true" /></span>
+              <span className="envelope-rim" aria-hidden="true" />
+              <span className="wax-seal"><span className="seal-shine" /><span className="seal-monogram">SF</span><span className="seal-orbit" /></span>
             </span>
-            <span className="envelope-front" />
-            <span className="envelope-flap" />
-            <span className="wax-seal"><span className="seal-monogram">SF</span><span className="seal-orbit" /></span>
           </span>
-          <span className="open-label">Abrir invitación</span>
+          <span className="open-label"><b>✦</b> Toca el sello para abrir <b>✦</b></span>
         </button>
       </section>
 
