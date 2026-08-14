@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
+import celebrationPhoto from "./assets/sonia-fernando-celebracion.webp";
+import mountainPhoto from "./assets/sonia-fernando-montana.webp";
+import parkPhoto from "./assets/sonia-fernando-parque.webp";
 
 const WEDDING_DATE = new Date("2026-09-11T17:00:00-05:00").getTime();
 const WHATSAPP_NUMBER = "573045933820";
@@ -40,6 +43,20 @@ export default function Home() {
 
   useEffect(() => () => audioRef.current?.pause(), []);
 
+  useEffect(() => {
+    const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.16, rootMargin: "0px 0px -40px" });
+
+    revealItems.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
+
   async function startMusic() {
     const audio = audioRef.current;
     if (!audio) return;
@@ -75,13 +92,13 @@ export default function Home() {
     const calendar = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Camila y Mateo//Boda//ES",
+      "PRODID:-//Sonia y Fernando//Boda//ES",
       "BEGIN:VEVENT",
-      "UID:camila-mateo-20260911@boda",
+      "UID:sonia-fernando-20260911@boda",
       "DTSTAMP:20260814T120000Z",
       "DTSTART:20260911T220000Z",
       "DTEND:20260912T040000Z",
-      "SUMMARY:Boda de Camila y Mateo",
+      "SUMMARY:Boda de Sonia y Fernando",
       "LOCATION:Salón de Eventos - Conjunto Residencial Paseo de Santa Catalina",
       "DESCRIPTION:Nos encantará compartir este día contigo.",
       "END:VEVENT",
@@ -90,13 +107,13 @@ export default function Home() {
     const url = URL.createObjectURL(new Blob([calendar], { type: "text/calendar" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = "boda-camila-y-mateo.ics";
+    link.download = "boda-sonia-y-fernando.ics";
     link.click();
     URL.revokeObjectURL(url);
   }
 
   async function shareInvitation() {
-    const shareData = { title: "Boda de Camila y Mateo", text: "Acompáñanos a celebrar nuestro amor", url: window.location.href };
+    const shareData = { title: "Boda de Sonia y Fernando", text: "Acompáñanos a celebrar nuestro amor", url: window.location.href };
     if (navigator.share) {
       await navigator.share(shareData);
     } else {
@@ -121,7 +138,7 @@ export default function Home() {
       `Número de asistentes: *${guests}*.`,
       guestMessage ? `Mensaje: ${guestMessage}` : "",
       "",
-      "Confirmación enviada desde la invitación web de Camila y Mateo.",
+      "Confirmación enviada desde la invitación web de Sonia y Fernando.",
     ].filter(Boolean).join("\n");
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -148,12 +165,12 @@ export default function Home() {
           <span className="envelope">
             <span className="envelope-back" />
             <span className="letter-preview">
-              <span className="letter-mark">C <i>&amp;</i> M</span>
+              <span className="letter-mark">S <i>&amp;</i> F</span>
               <span className="letter-date">11 · 09 · 2026</span>
             </span>
             <span className="envelope-front" />
             <span className="envelope-flap" />
-            <span className="wax-seal"><span className="seal-monogram">CM</span><span className="seal-orbit" /></span>
+            <span className="wax-seal"><span className="seal-monogram">SF</span><span className="seal-orbit" /></span>
           </span>
           <span className="open-label">Abrir invitación</span>
         </button>
@@ -166,11 +183,14 @@ export default function Home() {
 
       <section className="hero" aria-hidden={!opened}>
         <div className="hero-grain" />
+        <div className="petal-field" aria-hidden="true">
+          {Array.from({ length: 18 }, (_, index) => <i key={index} />)}
+        </div>
         <div className="botanical botanical-left" aria-hidden="true"><span>⌇</span><span>❧</span><span>⌇</span></div>
         <div className="botanical botanical-right" aria-hidden="true"><span>⌇</span><span>❧</span><span>⌇</span></div>
         <div className="hero-content">
           <p className="hero-kicker">Nos casamos</p>
-          <h2><span>Camila</span><i>&amp;</i><span>Mateo</span></h2>
+          <h2><span>Sonia</span><i>&amp;</i><span>Fernando</span></h2>
           <div className="ornament" aria-hidden="true"><span /><b>✦</b><span /></div>
           <p className="hero-intro">Hay momentos en la vida que son especiales por sí solos. Compartirlos con quienes amamos los convierte en inolvidables.</p>
           <div className="date-lockup" aria-label="11 de septiembre de 2026"><span>Viernes</span><strong>11</strong><span>Septiembre · 2026</span></div>
@@ -187,6 +207,35 @@ export default function Home() {
           ))}
         </div>
         <button className="primary-button dark-button" type="button" onClick={downloadCalendar}>Agregar al calendario</button>
+      </section>
+
+      <section className="story-section light-section" aria-labelledby="story-title">
+        <div className="story-heading reveal-item" data-reveal>
+          <p className="section-kicker">Sonia &amp; Fernando</p>
+          <h3 id="story-title">Nuestra historia, nuestro para siempre</h3>
+          <p>Los mejores recuerdos nacen de los momentos sencillos: una aventura, una celebración y la alegría de caminar juntos.</p>
+        </div>
+
+        <div className="story-collage">
+          <figure className="story-photo story-photo-main reveal-item" data-reveal>
+            <div className="photo-window"><img src={mountainPhoto} alt="Sonia y Fernando juntos en la montaña" /></div>
+            <figcaption>El mejor destino siempre será juntos</figcaption>
+          </figure>
+
+          <figure className="story-photo story-photo-celebration reveal-item" data-reveal>
+            <div className="photo-window"><img src={celebrationPhoto} alt="Sonia y Fernando compartiendo una celebración" /></div>
+            <figcaption>Una historia hecha de momentos</figcaption>
+          </figure>
+
+          <figure className="story-photo story-photo-park reveal-item" data-reveal>
+            <div className="photo-window park-photo-window"><img src={parkPhoto} alt="Sonia y Fernando en el parque con su perro" /></div>
+            <figcaption>La felicidad también tiene cuatro patas</figcaption>
+          </figure>
+        </div>
+
+        <div className="story-signature reveal-item" data-reveal aria-label="Sonia y Fernando">
+          <span>Sonia</span><i>&amp;</i><span>Fernando</span>
+        </div>
       </section>
 
       <section className="details-section dark-section">
@@ -254,7 +303,7 @@ export default function Home() {
 
       <footer>
         <p>Con amor</p>
-        <h3>Camila <i>&amp;</i> Mateo</h3>
+        <h3>Sonia <i>&amp;</i> Fernando</h3>
         <span>11 · 09 · 2026</span>
         <button type="button" onClick={shareInvitation}>Compartir invitación ↗</button>
       </footer>

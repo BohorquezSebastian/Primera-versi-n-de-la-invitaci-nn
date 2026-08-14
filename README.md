@@ -1,8 +1,8 @@
-# Invitación de boda interactiva
+# Invitación de boda · Sonia y Fernando
 
-Versión estática preparada para GitHub Pages. Conserva la apertura del sobre,
-las animaciones, la música ambiental, la cuenta regresiva, los mapas, el
-calendario y el formulario de confirmación por WhatsApp.
+Versión estática preparada para GitHub Pages. Incluye la apertura animada del
+sobre, pétalos, galería fotográfica, música ambiental, cuenta regresiva, mapa,
+calendario y formulario de confirmación por WhatsApp.
 
 ## Probar en el computador
 
