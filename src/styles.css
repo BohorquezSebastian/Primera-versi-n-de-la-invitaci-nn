@@ -278,11 +278,15 @@ button { font: inherit; }
 .gift-envelope-area { position: relative; width: min(100%, 680px); height: 370px; transition: height .75s cubic-bezier(.2,.75,.2,1); }
 .gift-envelope-area.is-open { height: 610px; }
 .gift-envelope-button { position: absolute; left: 50%; bottom: 0; z-index: 4; width: min(100%, 500px); padding: 0; border: 0; color: inherit; background: transparent; cursor: pointer; perspective: 1200px; transform: translateX(-50%); }
+.gift-envelope-button:disabled { pointer-events: none; cursor: default; opacity: 1; }
 .gift-envelope-button:focus-visible { outline: 2px solid var(--wine); outline-offset: 9px; border-radius: 12px; }
+.gift-envelope-back { position: absolute; left: 50%; bottom: 0; z-index: 1; display: block; width: min(100%, 500px); aspect-ratio: 1.5; pointer-events: none; opacity: 0; transform: translateX(-50%) translateY(18px) scale(.95); transition: opacity .42s ease .08s, transform .7s cubic-bezier(.2,.75,.2,1); }
+.gift-envelope-back img { position: absolute; left: -22.5%; bottom: -18%; display: block; width: 145%; height: 145%; object-fit: contain; clip-path: polygon(50% 2%, 82.5% 37%, 82.5% 66%, 17.5% 66%, 17.5% 37%); }
+.gift-envelope-area.is-open .gift-envelope-back { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 .gift-envelope { position: relative; display: block; width: 100%; aspect-ratio: 1.5; filter: drop-shadow(0 24px 22px rgba(73,46,33,.25)); transform: rotateX(4deg) rotateZ(-.6deg); transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.75,.2,1), filter .4s ease, opacity .45s ease; }
 .gift-envelope img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; transition: opacity .45s ease, transform .7s cubic-bezier(.2,.75,.2,1); }
 .gift-envelope-closed { opacity: 1; transform: scale(1); }
-.gift-envelope-open { inset: auto; left: -22.5%; bottom: -18%; width: 145%; height: 145%; opacity: 0; clip-path: polygon(50% 2%, 82.5% 37%, 82.5% 95.5%, 17.5% 95.5%, 17.5% 37%); transform: translateY(18px) scale(.95); }
+.gift-envelope-open { inset: auto; left: -22.5%; bottom: -18%; width: 145%; height: 145%; opacity: 0; clip-path: polygon(17.5% 37%, 50% 66%, 82.5% 37%, 82.5% 95.5%, 17.5% 95.5%); transform: translateY(18px) scale(.95); }
 .gift-envelope-seal { position: absolute; top: 51.2%; left: 50%; color: #f7d783; font-family: Georgia, serif; font-size: clamp(.8rem, 3vw, 1.15rem); font-weight: 700; letter-spacing: -.08em; text-shadow: 0 2px 2px rgba(58,6,13,.74); transform: translate(-50%,-50%) rotate(-2deg); transition: opacity .3s ease, transform .45s ease; }
 .gift-envelope-button:hover .gift-envelope { filter: drop-shadow(0 31px 28px rgba(73,46,33,.32)); transform: rotateX(1deg) rotateZ(.3deg) translateY(-7px) scale(1.018); }
 .gift-envelope-area.is-open .gift-envelope { transform: rotateX(-2deg) translateY(0) scale(1); }

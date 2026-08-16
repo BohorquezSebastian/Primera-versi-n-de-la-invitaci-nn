@@ -298,6 +298,10 @@ export default function Home() {
         <p className="gift-intro">Compartir este momento contigo es nuestro mejor regalo. Si deseas acompañarnos con un detalle adicional, puedes abrir este sobre.</p>
 
         <div className={`gift-envelope-area ${giftOpened ? "is-open" : ""}`}>
+          <span className="gift-envelope-back" aria-hidden="true">
+            <img src={openGoldenEnvelope} alt="" />
+          </span>
+
           <div className="gift-letter" aria-hidden={!giftOpened}>
             <button className="gift-letter-close" type="button" onClick={() => setGiftOpened(false)} aria-label="Cerrar el sobre">×</button>
             <span className="gift-letter-kicker">Con cariño</span>
@@ -312,6 +316,7 @@ export default function Home() {
             type="button"
             aria-expanded={giftOpened}
             onClick={() => setGiftOpened((value) => !value)}
+            disabled={giftOpened}
           >
             <span className="gift-envelope">
               <img className="gift-envelope-closed" src={goldenEnvelope} alt="" aria-hidden="true" />
