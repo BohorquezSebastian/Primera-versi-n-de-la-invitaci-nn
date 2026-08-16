@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import viewpointPhoto from "./assets/sonia-fernando-mirador.webp";
 import goldenEnvelope from "./assets/sobre-dorado-3d-v1.webp";
+import openGoldenEnvelope from "./assets/sobre-dorado-abierto-v2.png";
 
 const WEDDING_DATE = new Date("2026-09-11T17:00:00-05:00").getTime();
 const WHATSAPP_NUMBER = "573103223000";
@@ -297,6 +298,15 @@ export default function Home() {
         <p className="gift-intro">Compartir este momento contigo es nuestro mejor regalo. Si deseas acompañarnos con un detalle adicional, puedes abrir este sobre.</p>
 
         <div className={`gift-envelope-area ${giftOpened ? "is-open" : ""}`}>
+          <div className="gift-letter" aria-hidden={!giftOpened}>
+            <button className="gift-letter-close" type="button" onClick={() => setGiftOpened(false)} aria-label="Cerrar el sobre">×</button>
+            <span className="gift-letter-kicker">Con cariño</span>
+            <p>Para quienes deseen tener un detalle con nosotros, hemos dispuesto esta opción.</p>
+            <small>Llave Bre-B</small>
+            <strong>{BREB_KEY}</strong>
+            <button className="gift-copy-button" type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
+          </div>
+
           <button
             className="gift-envelope-button"
             type="button"
@@ -304,21 +314,12 @@ export default function Home() {
             onClick={() => setGiftOpened((value) => !value)}
           >
             <span className="gift-envelope">
-              <img src={goldenEnvelope} alt="" aria-hidden="true" />
+              <img className="gift-envelope-closed" src={goldenEnvelope} alt="" aria-hidden="true" />
+              <img className="gift-envelope-open" src={openGoldenEnvelope} alt="" aria-hidden="true" />
               <span className="gift-envelope-seal" aria-hidden="true">FS</span>
             </span>
-            <span className="gift-open-label">{giftOpened ? "Cerrar sobre" : "Abrir sobre"}</span>
+            <span className="gift-open-label">Abrir sobre</span>
           </button>
-
-          {giftOpened && (
-            <div className="gift-letter">
-              <span className="gift-letter-kicker">Con cariño</span>
-              <p>Para quienes deseen tener un detalle con nosotros, hemos dispuesto esta opción.</p>
-              <small>Llave Bre-B</small>
-              <strong>{BREB_KEY}</strong>
-              <button type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
-            </div>
-          )}
         </div>
       </section>
 
