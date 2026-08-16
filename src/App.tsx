@@ -7,8 +7,18 @@ import goldenEnvelope from "./assets/sobre-dorado-3d-v1.webp";
 
 const WEDDING_DATE = new Date("2026-09-11T17:00:00-05:00").getTime();
 const WHATSAPP_NUMBER = "573045933820";
+const BREB_KEY = "@sanchez1569";
 
 type Countdown = { days: number; hours: number; minutes: number; seconds: number };
+type DressTone = "burgundy" | "gold" | "forest" | "navy" | "charcoal";
+
+const DRESS_TONES: Array<{ id: DressTone; label: string }> = [
+  { id: "burgundy", label: "Borgoña" },
+  { id: "gold", label: "Dorado oscuro" },
+  { id: "forest", label: "Verde bosque" },
+  { id: "navy", label: "Azul noche" },
+  { id: "charcoal", label: "Carbón" },
+];
 
 const COUNTDOWN_LABELS: Array<[keyof Countdown, string]> = [
   ["days", "Días"],
@@ -32,6 +42,8 @@ export default function Home() {
   const [countdown, setCountdown] = useState<Countdown>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [musicOn, setMusicOn] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [dressTone, setDressTone] = useState<DressTone>("burgundy");
+  const [brebCopied, setBrebCopied] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -118,6 +130,16 @@ export default function Home() {
     } else {
       await navigator.clipboard.writeText(window.location.href);
       window.alert("Enlace copiado");
+    }
+  }
+
+  async function copyBrebKey() {
+    try {
+      await navigator.clipboard.writeText(BREB_KEY);
+      setBrebCopied(true);
+      window.setTimeout(() => setBrebCopied(false), 2_200);
+    } catch {
+      window.prompt("Copia la llave Bre-B:", BREB_KEY);
     }
   }
 
@@ -244,19 +266,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="dress-section">
+      <section className={`dress-section dress-${dressTone}`}>
         <div className="dress-copy">
           <p className="section-kicker">Código de vestuario</p>
           <h3>Cóctel de noche</h3>
           <p>Elegancia sofisticada para una celebración nocturna.</p>
           <div className="palette" aria-label="Paleta sugerida para cóctel de noche">
-            <span title="Borgoña" />
-            <span title="Dorado oscuro" />
-            <span title="Verde bosque" />
-            <span title="Azul noche" />
-            <span title="Carbón" />
+            {DRESS_TONES.map(({ id, label }) => (
+              <button
+                key={id}
+                className={`tone-${id}`}
+                type="button"
+                title={label}
+                aria-label={`Ver ambiente ${label}`}
+                aria-pressed={dressTone === id}
+                onClick={() => setDressTone(id)}
+              />
+            ))}
           </div>
+          <span className="palette-hint">Toca un color para transformar la atmósfera.</span>
           <small>El blanco y los tonos marfil quedan reservados exclusivamente para la novia.</small>
+        </div>
+      </section>
+
+      <section className="gift-section light-section">
+        <div className="gift-mark" aria-hidden="true">✦</div>
+        <p className="section-kicker">Un detalle para nosotros</p>
+        <h3>Tu presencia es nuestro mejor regalo</h3>
+        <p className="gift-intro">Pero si deseas tener un detalle con nosotros, te dejamos esta opción:</p>
+        <div className="breb-card">
+          <span className="transfer-label">Transferencia</span>
+          <p>No es necesario estar cerca para hacernos sentir tu amor y cariño.</p>
+          <small>Llave Bre-B</small>
+          <strong>{BREB_KEY}</strong>
+          <button type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
         </div>
       </section>
 

@@ -2,7 +2,8 @@
 
 Versión estática preparada para GitHub Pages. Incluye la apertura animada del
 sobre, pétalos, fotografía principal, música ambiental, cuenta regresiva, mapa,
-calendario y formulario de confirmación por WhatsApp.
+calendario, paleta nocturna interactiva, llave Bre-B copiable y formulario de
+confirmación por WhatsApp.
 
 ## Cambiar la canción
 
