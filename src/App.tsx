@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
-import celebrationPhoto from "./assets/sonia-fernando-celebracion.webp";
-import glassesPhoto from "./assets/sonia-fernando-gafas.webp";
 import viewpointPhoto from "./assets/sonia-fernando-mirador.webp";
 import goldenEnvelope from "./assets/sobre-dorado-3d-v1.webp";
 
@@ -93,13 +91,13 @@ export default function Home() {
     const calendar = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Sonia y Fernando//Boda//ES",
+      "PRODID:-//Fernando y Sonia//Boda//ES",
       "BEGIN:VEVENT",
-      "UID:sonia-fernando-20260911@boda",
+      "UID:fernando-sonia-20260911@boda",
       "DTSTAMP:20260814T120000Z",
       "DTSTART:20260911T220000Z",
       "DTEND:20260912T040000Z",
-      "SUMMARY:Boda de Sonia y Fernando",
+      "SUMMARY:Boda de Fernando y Sonia",
       "LOCATION:Salón de Eventos - Conjunto Residencial Paseo de Santa Catalina",
       "DESCRIPTION:Nos encantará compartir este día contigo.",
       "END:VEVENT",
@@ -108,13 +106,13 @@ export default function Home() {
     const url = URL.createObjectURL(new Blob([calendar], { type: "text/calendar" }));
     const link = document.createElement("a");
     link.href = url;
-    link.download = "boda-sonia-y-fernando.ics";
+    link.download = "boda-fernando-y-sonia.ics";
     link.click();
     URL.revokeObjectURL(url);
   }
 
   async function shareInvitation() {
-    const shareData = { title: "Boda de Sonia y Fernando", text: "Acompáñanos a celebrar nuestro amor", url: window.location.href };
+    const shareData = { title: "Boda de Fernando y Sonia", text: "Acompáñanos a celebrar nuestro amor", url: window.location.href };
     if (navigator.share) {
       await navigator.share(shareData);
     } else {
@@ -139,7 +137,7 @@ export default function Home() {
       `Número de asistentes: *${guests}*.`,
       guestMessage ? `Mensaje: ${guestMessage}` : "",
       "",
-      "Confirmación enviada desde la invitación web de Sonia y Fernando.",
+      "Confirmación enviada desde la invitación web de Fernando y Sonia.",
     ].filter(Boolean).join("\n");
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -151,10 +149,12 @@ export default function Home() {
     <main className={`site-shell ${opened ? "invitation-open" : ""}`}>
       <audio
         ref={audioRef}
-        src="./audio/boda-suave.mp3"
         preload="auto"
         loop
-      />
+      >
+        <source src="./audio/cancion-boda.mp3" type="audio/mpeg" />
+        <source src="./audio/boda-suave.mp3" type="audio/mpeg" />
+      </audio>
       <section className="opening-scene" aria-hidden={opened}>
         <div className="opening-copy">
           <span className="eyebrow">Tenemos algo que contarte</span>
@@ -165,7 +165,7 @@ export default function Home() {
         <button className="envelope-button" type="button" onClick={openInvitation} aria-label="Abrir invitación de boda">
           <span className="envelope">
             <img className="golden-envelope-art" src={goldenEnvelope} alt="" aria-hidden="true" />
-            <span className="golden-seal-monogram" aria-hidden="true">SF</span>
+            <span className="golden-seal-monogram" aria-hidden="true">FS</span>
             <span className="envelope-glint" aria-hidden="true" />
           </span>
           <span className="open-label">Abrir invitación</span>
@@ -186,7 +186,7 @@ export default function Home() {
         <div className="botanical botanical-right" aria-hidden="true"><span>⌇</span><span>❧</span><span>⌇</span></div>
         <div className="hero-content">
           <p className="hero-kicker">Nos casamos</p>
-          <h2><span>Sonia</span><i>&amp;</i><span>Fernando</span></h2>
+          <h2><span>Fernando</span><i>&amp;</i><span>Sonia</span></h2>
           <div className="ornament" aria-hidden="true"><span /><b>✦</b><span /></div>
           <p className="hero-intro">Hay momentos en la vida que son especiales por sí solos. Compartirlos con quienes amamos los convierte en inolvidables.</p>
           <div className="date-lockup" aria-label="11 de septiembre de 2026"><span>Viernes</span><strong>11</strong><span>Septiembre · 2026</span></div>
@@ -207,30 +207,20 @@ export default function Home() {
 
       <section className="story-section light-section" aria-labelledby="story-title">
         <div className="story-heading reveal-item" data-reveal>
-          <p className="section-kicker">Sonia &amp; Fernando</p>
+          <p className="section-kicker">Fernando &amp; Sonia</p>
           <h3 id="story-title">Nuestra historia, nuestro para siempre</h3>
           <p>Los mejores recuerdos nacen de los momentos sencillos: una aventura, una celebración y la alegría de caminar juntos.</p>
         </div>
 
         <div className="story-collage">
           <figure className="story-photo story-photo-main reveal-item" data-reveal>
-            <div className="photo-window"><img src={viewpointPhoto} alt="Sonia y Fernando juntos en un mirador de la ciudad" /></div>
+            <div className="photo-window"><img src={viewpointPhoto} alt="Fernando y Sonia juntos en un mirador de la ciudad" /></div>
             <figcaption>El mejor paisaje siempre será juntos</figcaption>
-          </figure>
-
-          <figure className="story-photo story-photo-celebration reveal-item" data-reveal>
-            <div className="photo-window"><img src={celebrationPhoto} alt="Sonia y Fernando compartiendo una celebración" /></div>
-            <figcaption>Una historia hecha de momentos</figcaption>
-          </figure>
-
-          <figure className="story-photo story-photo-park reveal-item" data-reveal>
-            <div className="photo-window"><img src={glassesPhoto} alt="Sonia y Fernando disfrutando un día juntos" /></div>
-            <figcaption>La vida es mejor cuando la compartimos</figcaption>
           </figure>
         </div>
 
-        <div className="story-signature reveal-item" data-reveal aria-label="Sonia y Fernando">
-          <span>Sonia</span><i>&amp;</i><span>Fernando</span>
+        <div className="story-signature reveal-item" data-reveal aria-label="Fernando y Sonia">
+          <span>Fernando</span><i>&amp;</i><span>Sonia</span>
         </div>
       </section>
 
@@ -257,18 +247,17 @@ export default function Home() {
       <section className="dress-section">
         <div className="dress-copy">
           <p className="section-kicker">Código de vestuario</p>
-          <h3>Cóctel de día</h3>
-          <p>Elegancia relajada en tonos cálidos.</p>
-          <div className="palette" aria-label="Paleta sugerida"><span /><span /><span /><span /><span /></div>
+          <h3>Cóctel de noche</h3>
+          <p>Elegancia sofisticada para una celebración nocturna.</p>
+          <div className="palette" aria-label="Paleta sugerida para cóctel de noche">
+            <span title="Borgoña" />
+            <span title="Dorado oscuro" />
+            <span title="Verde bosque" />
+            <span title="Azul noche" />
+            <span title="Carbón" />
+          </div>
           <small>El blanco y los tonos marfil quedan reservados exclusivamente para la novia.</small>
         </div>
-      </section>
-
-      <section className="gift-section light-section">
-        <div className="gift-mark" aria-hidden="true">♡</div>
-        <p className="section-kicker">Tu presencia es nuestro regalo</p>
-        <h3>Lluvia de sobres</h3>
-        <p>Lo más importante para nosotros es compartir este día contigo. Si deseas hacernos un obsequio, tendremos disponible una lluvia de sobres.</p>
       </section>
 
       <section className="rsvp-section" id="rsvp">
@@ -299,7 +288,7 @@ export default function Home() {
 
       <footer>
         <p>Con amor</p>
-        <h3>Sonia <i>&amp;</i> Fernando</h3>
+        <h3>Fernando <i>&amp;</i> Sonia</h3>
         <span>11 · 09 · 2026</span>
         <button type="button" onClick={shareInvitation}>Compartir invitación ↗</button>
       </footer>

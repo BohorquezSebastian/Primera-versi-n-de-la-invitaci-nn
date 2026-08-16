@@ -1,8 +1,15 @@
-# Invitación de boda · Sonia y Fernando
+# Invitación de boda · Fernando y Sonia
 
 Versión estática preparada para GitHub Pages. Incluye la apertura animada del
-sobre, pétalos, galería fotográfica, música ambiental, cuenta regresiva, mapa,
+sobre, pétalos, fotografía principal, música ambiental, cuenta regresiva, mapa,
 calendario y formulario de confirmación por WhatsApp.
+
+## Cambiar la canción
+
+Guarda el archivo de audio autorizado con el nombre `cancion-boda.mp3` dentro
+de `public/audio`. No es necesario cambiar el código: al volver a publicar, la
+invitación usará esa canción. Mientras el archivo no exista, sonará la melodía
+provisional `boda-suave.mp3`.
 
 ## Probar en el computador
 

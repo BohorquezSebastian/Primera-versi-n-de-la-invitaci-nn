@@ -196,10 +196,10 @@ button { font: inherit; }
 .story-heading { width: min(100%, 740px); margin: 0 auto 72px; text-align: center; }
 .story-heading h3 { margin: 0 0 22px; color: var(--wine); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 7vw, 5.8rem); font-weight: 400; letter-spacing: -.055em; line-height: .95; }
 .story-heading > p:last-child { max-width: 620px; margin: 0 auto; color: #785447; font-family: Georgia, serif; font-size: 1.06rem; line-height: 1.8; }
-.story-collage { position: relative; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(260px,.85fr); grid-template-rows: auto auto; gap: 24px; width: min(100%, 1080px); margin: 0 auto; }
+.story-collage { position: relative; width: min(100%, 820px); margin: 0 auto; }
 .story-photo { position: relative; margin: 0; padding: 12px 12px 18px; background: #fffaf1; border: 1px solid rgba(122,65,45,.13); box-shadow: 0 24px 55px rgba(91,42,34,.16); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.75,.2,1), box-shadow .35s ease; }
 .story-photo::after { content: ""; position: absolute; inset: 7px; border: 1px solid rgba(182,122,59,.13); pointer-events: none; }
-.story-photo-main { grid-row: 1 / 3; align-self: center; }
+.story-photo-main { width: 100%; }
 .story-photo-main.is-visible { transform: rotate(-1.3deg); }
 .story-photo-celebration.is-visible { transform: rotate(2deg); transition-delay: .13s; }
 .story-photo-park.is-visible { transform: rotate(-2.2deg); transition-delay: .26s; }
@@ -208,11 +208,11 @@ button { font: inherit; }
 .story-photo-celebration:hover { transform: translateY(-8px) rotate(.7deg); }
 .story-photo-park:hover { transform: translateY(-8px) rotate(-.8deg); }
 .photo-window { position: relative; overflow: hidden; background: #dfc8ac; }
-.story-photo-main .photo-window { aspect-ratio: .83; }
+.story-photo-main .photo-window { aspect-ratio: 4 / 3; }
 .story-photo-celebration .photo-window { aspect-ratio: 1.28; }
 .story-photo-park .photo-window { aspect-ratio: 1.28; }
 .photo-window img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.65,.2,1), filter .5s ease; }
-.story-photo-main img { object-position: 32% center; }
+.story-photo-main img { object-position: center; }
 .story-photo-celebration img { object-position: center 40%; filter: saturate(.76) sepia(.08) contrast(.96); }
 .story-photo-park img { object-position: center 46%; }
 .story-photo:hover .photo-window > img { filter: saturate(1.02) sepia(0) contrast(1); }
@@ -247,18 +247,18 @@ button { font: inherit; }
 .timeline-item strong { display: block; margin-bottom: 7px; font-family: Georgia, serif; font-size: 1.45rem; font-weight: 400; }
 .timeline-item p { margin: 0; color: #777064; font-family: Georgia, serif; font-style: italic; }
 
-.dress-section { position: relative; display: grid; place-items: center; min-height: 82svh; padding: 110px 22px; overflow: hidden; background: radial-gradient(circle at 50% 45%, rgba(225,182,110,.14), transparent 34%), linear-gradient(145deg, #8f3e3a, #611f32 56%, #35131e); }
+.dress-section { position: relative; display: grid; place-items: center; min-height: 82svh; padding: 110px 22px; overflow: hidden; background: radial-gradient(circle at 13% 18%, rgba(255,230,174,.72) 0 1px, transparent 2px), radial-gradient(circle at 81% 22%, rgba(255,240,202,.55) 0 1px, transparent 2px), radial-gradient(circle at 67% 72%, rgba(255,230,174,.44) 0 1px, transparent 2px), radial-gradient(circle at 34% 82%, rgba(255,240,202,.5) 0 1px, transparent 2px), radial-gradient(circle at 50% 45%, rgba(190,124,78,.16), transparent 35%), linear-gradient(150deg, #5d2736 0%, #33243b 48%, #171d2a 100%); }
 .dress-section::before, .dress-section::after { content: "❧"; position: absolute; color: rgba(198,164,109,.08); font-family: Georgia, serif; font-size: 24rem; line-height: 1; }
 .dress-section::before { left: -100px; bottom: -50px; transform: rotate(-24deg); }
 .dress-section::after { top: -80px; right: -100px; transform: rotate(150deg); }
 .dress-copy { position: relative; z-index: 2; width: min(100%, 600px); text-align: center; }
 .dress-copy > p:not(.section-kicker) { margin: 0 auto 30px; color: rgba(244,239,229,.62); font-family: Georgia, serif; font-size: 1.08rem; line-height: 1.7; }
 .palette { display: flex; justify-content: center; gap: 10px; margin: 34px 0 24px; }
-.palette span { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,.14); border-radius: 50%; background: #a64b32; }
-.palette span:nth-child(2) { background: #c66b36; }
-.palette span:nth-child(3) { background: #d39c4a; }
-.palette span:nth-child(4) { background: #79383a; }
-.palette span:nth-child(5) { background: #9b6b5c; }
+.palette span { width: 34px; height: 34px; border: 2px solid rgba(255,255,255,.18); border-radius: 50%; background: #6e2438; box-shadow: 0 8px 22px rgba(7,10,18,.28), inset 0 1px 0 rgba(255,255,255,.14); }
+.palette span:nth-child(2) { background: #a7783d; }
+.palette span:nth-child(3) { background: #243c36; }
+.palette span:nth-child(4) { background: #1c2940; }
+.palette span:nth-child(5) { background: #27282d; }
 .dress-copy small { color: rgba(244,239,229,.48); font-family: Georgia, serif; font-style: italic; }
 
 .gift-section { display: flex; flex-direction: column; align-items: center; padding: 110px 22px; text-align: center; }
@@ -299,11 +299,11 @@ footer button { padding: 12px 0; border: 0; border-bottom: 1px solid rgba(198,16
   .hero h2 { font-size: clamp(3.7rem, 17vw, 5.5rem); }
   .story-section { padding: 96px 18px 112px; }
   .story-heading { margin-bottom: 50px; }
-  .story-collage { grid-template-columns: 1fr; grid-template-rows: auto; gap: 26px; width: min(100%, 520px); }
-  .story-photo-main { grid-row: auto; }
+  .story-collage { width: min(100%, 520px); }
+  .story-photo-main { width: 100%; }
   .story-photo-celebration { width: 91%; margin-left: auto; }
   .story-photo-park { width: 92%; margin-right: auto; }
-  .story-photo-main .photo-window { aspect-ratio: .9; }
+  .story-photo-main .photo-window { aspect-ratio: 4 / 3; }
   .story-signature { flex-direction: column; gap: 4px; margin-top: 58px; line-height: .82; }
   .story-signature i { margin: 8px 0; }
   footer h3 { font-size: clamp(2.55rem, 13vw, 4rem); }
