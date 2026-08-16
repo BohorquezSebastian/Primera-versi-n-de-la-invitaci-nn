@@ -6,7 +6,7 @@ import viewpointPhoto from "./assets/sonia-fernando-mirador.webp";
 import goldenEnvelope from "./assets/sobre-dorado-3d-v1.webp";
 
 const WEDDING_DATE = new Date("2026-09-11T17:00:00-05:00").getTime();
-const WHATSAPP_NUMBER = "573045933820";
+const WHATSAPP_NUMBER = "573103223000";
 const BREB_KEY = "@sanchez1569";
 
 type Countdown = { days: number; hours: number; minutes: number; seconds: number };
@@ -43,6 +43,7 @@ export default function Home() {
   const [musicOn, setMusicOn] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [dressTone, setDressTone] = useState<DressTone>("burgundy");
+  const [giftOpened, setGiftOpened] = useState(false);
   const [brebCopied, setBrebCopied] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -291,15 +292,33 @@ export default function Home() {
 
       <section className="gift-section light-section">
         <div className="gift-mark" aria-hidden="true">✦</div>
-        <p className="section-kicker">Un detalle para nosotros</p>
-        <h3>Tu presencia es nuestro mejor regalo</h3>
-        <p className="gift-intro">Pero si deseas tener un detalle con nosotros, te dejamos esta opción:</p>
-        <div className="breb-card">
-          <span className="transfer-label">Transferencia</span>
-          <p>No es necesario estar cerca para hacernos sentir tu amor y cariño.</p>
-          <small>Llave Bre-B</small>
-          <strong>{BREB_KEY}</strong>
-          <button type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
+        <p className="section-kicker">Un gesto de cariño</p>
+        <h3>Tu presencia hace especial este día</h3>
+        <p className="gift-intro">Compartir este momento contigo es nuestro mejor regalo. Si deseas acompañarnos con un detalle adicional, puedes abrir este sobre.</p>
+
+        <div className={`gift-envelope-area ${giftOpened ? "is-open" : ""}`}>
+          <button
+            className="gift-envelope-button"
+            type="button"
+            aria-expanded={giftOpened}
+            onClick={() => setGiftOpened((value) => !value)}
+          >
+            <span className="gift-envelope">
+              <img src={goldenEnvelope} alt="" aria-hidden="true" />
+              <span className="gift-envelope-seal" aria-hidden="true">FS</span>
+            </span>
+            <span className="gift-open-label">{giftOpened ? "Cerrar sobre" : "Abrir sobre"}</span>
+          </button>
+
+          {giftOpened && (
+            <div className="gift-letter">
+              <span className="gift-letter-kicker">Con cariño</span>
+              <p>Para quienes deseen tener un detalle con nosotros, hemos dispuesto esta opción.</p>
+              <small>Llave Bre-B</small>
+              <strong>{BREB_KEY}</strong>
+              <button type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
+            </div>
+          )}
         </div>
       </section>
 

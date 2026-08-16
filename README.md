@@ -46,5 +46,5 @@ git push origin main
 
 ## WhatsApp
 
-Las confirmaciones se preparan para el número colombiano `573045933820`.
+Las confirmaciones se preparan para el número colombiano `573103223000`.
 El invitado debe revisar el mensaje y tocar **Enviar** en WhatsApp.
