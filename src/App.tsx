@@ -210,7 +210,7 @@ export default function Home() {
         <div className="botanical botanical-right" aria-hidden="true"><span>⌇</span><span>❧</span><span>⌇</span></div>
         <div className="hero-content">
           <p className="hero-kicker">Nos casamos</p>
-          <h2><span>Fernando</span><i>&amp;</i><span>Sonia</span></h2>
+          <h2><span>Fernando Lardizábal Navarrete</span><i>&amp;</i><span>Sonia</span></h2>
           <div className="ornament" aria-hidden="true"><span /><b>✦</b><span /></div>
           <p className="hero-intro">Hay momentos en la vida que son especiales por sí solos. Compartirlos con quienes amamos los convierte en inolvidables.</p>
           <div className="date-lockup" aria-label="11 de septiembre de 2026"><span>Viernes</span><strong>11</strong><span>Septiembre · 2026</span></div>
@@ -263,7 +263,7 @@ export default function Home() {
             <p>Viernes, 11 de septiembre de 2026</p>
             <p>5:00 p. m.</p>
             <p>Salón de Eventos del Conjunto Residencial</p>
-            <a href="https://www.google.com/maps?q=4.732814,-74.064056" target="_blank" rel="noreferrer">Ver ubicación <span>↗</span></a>
+            <a href="https://www.google.com/maps?q=4.732860,-74.064095" target="_blank" rel="noreferrer">Ver ubicación <span>↗</span></a>
           </article>
         </div>
       </section>
@@ -309,6 +309,10 @@ export default function Home() {
             <small>Llave Bre-B</small>
             <strong>{BREB_KEY}</strong>
             <button className="gift-copy-button" type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
+            <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(218, 169, 83, 0.3)' }}>
+              <small>Cuenta CLABE</small>
+              <strong style={{ display: 'block', marginTop: '0.5rem' }}>012 180 0155415425 1</strong>
+            </div>
           </div>
 
           <button
