@@ -302,7 +302,7 @@ export default function Home() {
             <img src={openGoldenEnvelope} alt="" />
           </span>
 
-          <div className="gift-letter" aria-hidden={!giftOpened}>
+          <div className="gift-letter" style={{ display: giftOpened ? 'block' : 'none' }} aria-hidden={!giftOpened}>
             <button className="gift-letter-close" type="button" onClick={() => setGiftOpened(false)} aria-label="Cerrar el sobre">×</button>
             <span className="gift-letter-kicker">Con cariño</span>
             <p>Para quienes deseen tener un detalle con nosotros, hemos dispuesto esta opción.</p>
