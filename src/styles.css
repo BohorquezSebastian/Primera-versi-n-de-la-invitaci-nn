@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Georgia', serif;
   background-color: #faf8f5;
@@ -13,7 +12,6 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
 .invitation-container {
   background: white;
   padding: 40px;
@@ -24,7 +22,6 @@ body {
   width: 90%;
   border: 2px solid #e8e1d7;
 }
-
 .header h1 {
   font-size: 2.5rem;
   color: #c4a47c;
@@ -32,33 +29,27 @@ body {
   font-weight: normal;
   font-style: italic;
 }
-
 .header p {
   font-size: 1.1rem;
   margin-bottom: 30px;
 }
-
 .names h2 {
   font-size: 3rem;
   margin: 20px 0;
   color: #333;
 }
-
 .date-time {
   margin: 20px 0;
   font-size: 1.2rem;
   font-weight: bold;
 }
-
 .location {
   margin: 20px 0 30px 0;
 }
-
 .location h3 {
   font-size: 1.2rem;
   color: #c4a47c;
 }
-
 .rsvp-btn {
   background-color: #c4a47c;
   color: white;
@@ -69,7 +60,6 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .rsvp-btn:hover {
   background-color: #a88a62;
 }

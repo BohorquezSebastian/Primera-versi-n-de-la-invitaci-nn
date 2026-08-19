@@ -4,7 +4,6 @@ function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Attempt to play audio automatically (may be blocked by browser policies until interaction)
     if (audioRef.current) {
       audioRef.current.play().catch(e => console.log("Audio autoplay blocked."));
     }
@@ -12,7 +11,7 @@ function App() {
 
   return (
     <div className="invitation-container">
-      <audio ref={audioRef} src="/audio/cancion-boda.mp3" loop />
+      <audio ref={audioRef} src="./audio/cancion-boda.mp3" loop />
       <header className="header">
         <h1>¡Nos Casamos!</h1>
         <p>Estás invitado a celebrar con nosotros</p>
