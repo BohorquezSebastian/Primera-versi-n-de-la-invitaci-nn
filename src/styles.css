@@ -58,6 +58,22 @@ button { font: inherit; }
 @keyframes golden-glint { 0%, 55% { opacity: 0; transform: translateX(-115%); } 63% { opacity: .85; } 82%, 100% { opacity: 0; transform: translateX(115%); } }
 @keyframes golden-seal-pulse { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2) drop-shadow(0 0 5px rgba(220,151,50,.45)); } }
 
+.music-toggle {
+  position: fixed; top: 18px; right: 18px; z-index: 15; display: flex; align-items: center; gap: 9px;
+  padding: 10px 14px; border: 1px solid rgba(225,182,110,.38); border-radius: 999px;
+  opacity: 0; color: var(--ivory); background: rgba(63,23,34,.86); backdrop-filter: blur(12px);
+  font-size: .61rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  pointer-events: none; cursor: pointer; transform: translateY(-8px); transition: opacity .5s ease 1.2s, transform .5s ease 1.2s;
+}
+.invitation-open .music-toggle { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.sound-wave { display: flex; align-items: center; gap: 2px; height: 12px; }
+.sound-wave i { display: block; width: 2px; height: 5px; border-radius: 2px; background: var(--gold-light); }
+.sound-wave i:nth-child(2) { height: 10px; }
+.sound-wave.active i { animation: sound 1s ease-in-out infinite alternate; }
+.sound-wave.active i:nth-child(2) { animation-delay: .2s; }
+.sound-wave.active i:nth-child(3) { animation-delay: .4s; }
+@keyframes sound { to { height: 12px; } }
+
 .hero { position: relative; display: grid; place-items: center; min-height: 100svh; padding: 70px 22px 46px; overflow: hidden; opacity: 0; color: var(--ink); background: linear-gradient(rgba(255,248,237,.38), rgba(244,232,216,.58)), url("./assets/floral-frame-autumn-v1.webp") center / cover no-repeat, #f4e8d8; transform: scale(1.03); transition: opacity 1.2s ease .8s, transform 1.2s ease .8s; }
 .invitation-open .hero { opacity: 1; transform: scale(1); }
 .hero-grain { position: absolute; inset: 0; opacity: .1; background-image: repeating-radial-gradient(circle at 10% 10%, transparent 0 3px, rgba(100,50,35,.08) 4px); background-size: 12px 12px; pointer-events: none; }
@@ -77,8 +93,6 @@ button { font: inherit; }
 .scroll-cue { display: inline-flex; align-items: center; gap: 14px; margin-top: 40px; padding: 13px 20px; border: 1px solid rgba(111,38,56,.25); border-radius: 999px; color: var(--wine); background: rgba(255,248,237,.65); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; opacity: 0; }
 .scroll-cue span { color: var(--gold); font-size: 1rem; }
 .botanical { display: none; }
-.botanical-left { left: -40px; bottom: 12%; }
-.botanical-right { top: 8%; right: -42px; transform: rotate(162deg); }
 
 .invitation-open .hero-kicker { animation: rise-in .75s ease 1.08s forwards; }
 .invitation-open .hero h2 span:first-child { animation: name-in-left .95s cubic-bezier(.2,.75,.2,1) 1.18s forwards; }
@@ -151,22 +165,6 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
-
-.music-toggle {
-  position: fixed; top: 18px; right: 18px; z-index: 15; display: flex; align-items: center; gap: 9px;
-  padding: 10px 14px; border: 1px solid rgba(225,182,110,.38); border-radius: 999px;
-  opacity: 0; color: var(--ivory); background: rgba(63,23,34,.86); backdrop-filter: blur(12px);
-  font-size: .61rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-  pointer-events: none; cursor: pointer; transform: translateY(-8px); transition: opacity .5s ease 1.2s, transform .5s ease 1.2s;
-}
-.invitation-open .music-toggle { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.sound-wave { display: flex; align-items: center; gap: 2px; height: 12px; }
-.sound-wave i { display: block; width: 2px; height: 5px; border-radius: 2px; background: var(--gold-light); }
-.sound-wave i:nth-child(2) { height: 10px; }
-.sound-wave.active i { animation: sound 1s ease-in-out infinite alternate; }
-.sound-wave.active i:nth-child(2) { animation-delay: .2s; }
-.sound-wave.active i:nth-child(3) { animation-delay: .4s; }
-@keyframes sound { to { height: 12px; } }
 
 .light-section { color: var(--ink); background: linear-gradient(180deg, #f8eeea, var(--paper)); }
 .dark-section { color: var(--ivory); background: linear-gradient(145deg, #65314c, #332238 58%, var(--wine-deep)); }
