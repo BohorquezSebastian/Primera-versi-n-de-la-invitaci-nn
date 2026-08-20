@@ -322,8 +322,8 @@ export default function Home() {
             <button className="gift-copy-button" type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
             <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(218, 169, 83, 0.3)' }}>
               <small>Cuenta CLABE</small>
-              <strong style={{ display: 'block', marginTop: '0.5rem' }}>Fernando Lardizábal Navarrete</strong>
-              <strong style={{ display: 'block', marginTop: '1rem', fontSize: '1.2em' }}>012 180 01554154255 1</strong>
+              <strong style={{ display: 'block', marginTop: '0.5rem', fontSize: '0.85em', color: '#6b2d48' }}>Fernando Lardizábal Navarrete</strong>
+              <strong style={{ display: 'block', marginTop: '0.8rem', fontSize: '1.4em', whiteSpace: 'nowrap' }}>012 180 01554154255 1</strong>
               <button className="gift-copy-button" type="button" onClick={copyClabe} style={{ marginTop: '0.8rem' }}>{clabeCopied ? "¡CLABE copiada!" : "Copiar CLABE"}</button>
             </div>
           </div>
