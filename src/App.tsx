@@ -46,6 +46,7 @@ export default function Home() {
   const [dressTone, setDressTone] = useState<DressTone>("burgundy");
   const [giftOpened, setGiftOpened] = useState(false);
   const [brebCopied, setBrebCopied] = useState(false);
+  const [clabeCopied, setClabeCopied] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -142,6 +143,16 @@ export default function Home() {
       window.setTimeout(() => setBrebCopied(false), 2_200);
     } catch {
       window.prompt("Copia la llave Bre-B:", BREB_KEY);
+    }
+  }
+
+  async function copyClabe() {
+    try {
+      await navigator.clipboard.writeText("012 180 01554154255 1");
+      setClabeCopied(true);
+      window.setTimeout(() => setClabeCopied(false), 2_200);
+    } catch {
+      window.prompt("Copia la Cuenta CLABE:", "012 180 01554154255 1");
     }
   }
 
@@ -311,7 +322,9 @@ export default function Home() {
             <button className="gift-copy-button" type="button" onClick={copyBrebKey}>{brebCopied ? "¡Llave copiada!" : "Copiar llave"}</button>
             <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(218, 169, 83, 0.3)' }}>
               <small>Cuenta CLABE</small>
-              <strong style={{ display: 'block', marginTop: '0.5rem' }}>012 180 01554154255 1</strong>
+              <strong style={{ display: 'block', marginTop: '0.5rem' }}>Fernando Lardizábal Navarrete</strong>
+              <strong style={{ display: 'block', marginTop: '1rem', fontSize: '1.2em' }}>012 180 01554154255 1</strong>
+              <button className="gift-copy-button" type="button" onClick={copyClabe} style={{ marginTop: '0.8rem' }}>{clabeCopied ? "¡CLABE copiada!" : "Copiar CLABE"}</button>
             </div>
           </div>
 
